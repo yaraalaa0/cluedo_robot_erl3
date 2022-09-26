@@ -47,7 +47,7 @@ The agent has four possible states:
 There are, also, four possible events (state transitions):
 - **reached:** indicating that the robot reached its target position
 - **got a hint:** indicating that the robot received a hint (whether it is valid or not)
-- **collected 3 hints:** indicating that the robot collected 3 hints
+- **collected 3 hints:** indicating that the robot collected 3 hints at least
 - **hyp_non_correct:** indicating that the robot checked the current hypotheses and none of them was correct.
  
 
@@ -122,166 +122,43 @@ Add the path of the armor modules to your Python path:
 ```
 export PYTHONPATH=$PYTHONPATH:/root/ros_ws/src/armor/armor_py_api/scripts/armor_api/
 ```
-Download this repository to your workspace. Then, build it
+Download this repository (contains two packages) to your workspace. Add [erl2](https://github.com/yaraalaa0/cluedo_robot_erl2) package to the same workspace. Then, build everything
 
 ```
 catkin_make
 ```
 
-Place `cluedo_ontology.owl` file on your desktop (or on any other place, but you need to specify the path inside [ontology_server.py](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2/scripts/ontology_server.py))
 
-To launch the program, run the following commands in order on four terminal tabs:
+To launch the program, run the following commands in order on five terminal tabs:
 - launch ROSplan with the action interfaces: 
 ```
-roslaunch erl2 rosplan_cluedo.launch
+roslaunch exp_assignment3 rosplan_cluedo.launch
 ```
 - Launch ARMOR:
 ```
 rosrun armor execute it.emarolab.armor.ARMORMainService
 ```
-- Launch the simulation, ontology server, and go_to_point action server:
+- Launch the simulation:
 ```
-roslaunch erl2 assignment.launch
+roslaunch exp_assignment3 simulation.launch
+```
+- Launch the ontology server, hint server, and marker identifier server:
+```
+roslaunch exp_assignment3 servers.launch
 ```
 - Run the task manager to start the game:
 ```
-rosrun erl2 task_manager.py
+rosrun exp_assignment3 task_manager.py
 ```
-The received hints are displayed on the first terminal. The plan success result is displayed on the fourth terminal.
+The actions and received hints are displayed on the first terminal. The detected markers are displayed on the fourth terminal. The plan success result is displayed on the fifth terminal.
 
 ## Result:
-**Following are screenshots of the running simulation in successive timesteps:**
+**A video that shows the system running can be found here: **
 
-1. The simulation starts, the robot is in initial random pose
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/initial_pose.PNG?raw=true)
-
-2. First action in the plan `AdjustInitHeight` is executed
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/a1.PNG?raw=true)
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/p1.PNG?raw=true)
-
-3. Action `GoToWaypoint(wp0,wp1)` is executed
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/a2.PNG?raw=true)
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/p2.PNG?raw=true)
-
-4. Action `GetHint` is executed.
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/a3.PNG?raw=true)
-
-5. No hints received. So, the task_manager updates the current state and re-plan
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/re-planning__1.PNG?raw=true)
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/re-planning4.PNG?raw=true)
-
-6. Action `GoToWaypoint(wp1,wp2)` is executed
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/a5.PNG?raw=true)
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/p3.PNG?raw=true)
-
-7. Action `GetHint` is executed.
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/a6.PNG?raw=true)
-
-8. No hints received. So, the task_manager updates the current state and re-plan
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/re-planning__2.PNG?raw=true)
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/re-planning7.PNG?raw=true)
-
-9. Action `GoToWaypoint(wp2,wp3)` is executed
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/a8.PNG?raw=true)
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/p4.PNG?raw=true)
-
-
-10. Action `GetHint` is executed.
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/a9.PNG?raw=true)
-
-
-11. No hints received. So, the task_manager updates the current state and re-plan
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/re-planning__3.PNG?raw=true)
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/re-planning10.PNG?raw=true)
-
-12. Action `GoToWaypoint(wp3,wp4)` is executed
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/a11.PNG?raw=true)
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/p5.PNG?raw=true)
-
-
-13. Action `GetHint` is executed. There is a received hint.
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/a12.PNG?raw=true)
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/hint12.PNG?raw=true)
-
-14. Action `GoToWaypoint(wp4,wp1)` is executed
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/a13.PNG?raw=true)
-
-
-15. Action `MoveArm(h1,h2)` is executed
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/a14.PNG?raw=true)
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/p6.PNG?raw=true)
-
-
-16. Action `GetHint` is executed. There is a received hint.
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/a15.PNG?raw=true)
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/hint15.PNG?raw=true)
-
-
-17. Action `GoToWaypoint(wp1,wp2)` is executed
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/a16.PNG?raw=true)
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/p7.PNG?raw=true)
-
-
-18. Action `GetHint` is executed. There is a received hint.
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/a17.PNG?raw=true)
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/hint17.PNG?raw=true)
-
-
-19. The robot collected 3 hints. So, it goes to the center point. Action `GoToWaypoint(wp2,wp0)` is executed
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/a18.PNG?raw=true)
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/p8.PNG?raw=true)
-
-
-20. Action `CheckHypCorrect` is executed
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/a19.PNG?raw=true)
-
-
-21. When the robot finds the correct hypothesis, the output can be like this:
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/final20.PNG?raw=true)
-
-
-22. Plan is successful
-
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl2/blob/main/erl2_images/final_result.PNG?raw=true)
-
+The video shows the robot first going to wp1. Then, it starts looking for hints. It detects the first marker and then it continues exploration until it gets the second marker. Then, it gets the hints corresponding to these marker IDs. After that, it goes to another waypoint to collect other two hints. Then, it goes to the center point to check if a correct hypothesis was collected or not. If not, it continues exploration until it finds a correct one. 
 
 ## System Features & Working Assumptions:
-- There are four possible (x,y) locations for receiving hints and they are: (3,0), (0,3), (-3,0), (0,-3).
+- There are six possible (x,y) locations for receiving hints and they are: (3,0), (0,3), (-3,0), (0,-3).
 - When collecting hints, the robot doesn't stand exactly at the previously defined locations. However, it stands at the locations: (2.4,0), (0,2.4), (-2.4,0), (0,-2.4) respectively. This is to give space to the robot's arm to reach the previously defined hints locations with its end-effector.
 - There are two possible heights for the hints and they are: 0.75 and 1.25. Two arm poses, `low` and `high`, are defined to reach these two heights using Moveit. 
 - The robot aligns itself to be facing the wall depending on its location. This is done to facilitate reaching the `low` and `high` hints points with the robot's arm.
