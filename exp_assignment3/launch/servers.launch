@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+    <node name="ontology_server" pkg ="erl2" type="ontology_server.py" output="screen" /> 
+    <node name="hint_server" pkg ="exp_assignment3" type="hint_server.py" output="screen" /> 
+    <node name="aruco_marker_publisher" pkg ="aruco_ros" type="marker_publisher" output="screen" /> 
+</launch>
