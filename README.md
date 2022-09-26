@@ -153,7 +153,7 @@ rosrun exp_assignment3 task_manager.py
 The actions and received hints are displayed on the first terminal. The detected markers are displayed on the fourth terminal. The plan success result is displayed on the fifth terminal.
 
 ## Result:
-**A video that shows the system running can be found here: **
+**A video that shows the system running can be found [here](https://drive.google.com/file/d/13Kbp7WCyotH63hXQO8XWdrwkm3gZRxAm/view?usp=sharing)**
 
 The video shows the robot first going to wp1. Then, it starts looking for hints. It detects the first marker and then it continues exploration until it gets the second marker. Then, it gets the hints corresponding to these marker IDs. After that, it goes to another waypoint to collect other two hints. Then, it goes to the center point to check if a correct hypothesis was collected or not. If not, it continues exploration until it finds a correct one. 
 
