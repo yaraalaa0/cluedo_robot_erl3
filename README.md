@@ -32,7 +32,7 @@ The software architecture of the system is composed of 13 main components:
 - **CheckHypothesisCorrect Action Interface**: The ROSPlan action interface for the PDDL action `check_hypothesis_correct` responsible for checking if one of the collected hypotheses is the correct one or not. It calls the service `/check_hyp_complete` to get the list of complete hypotheses IDs, and it calls the service `/oracle_solution` to get the correct hypothesis ID. It, then, checks if one of the complete hypotheses is the correct one or not.
 
 
-![alt text](https://github.com/yaraalaa0/cluedo_robot_erl3/blob/main/Cluedo3_comp_diag.jpg?raw=true)
+![alt text](https://github.com/yaraalaa0/cluedo_robot_erl3/blob/main/cluedo3_comp_diag.jpg?raw=true)
 
 
 ## State Diagram:
