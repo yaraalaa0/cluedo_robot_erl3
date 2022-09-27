@@ -1,7 +1,7 @@
 # cluedo_robot_erl3
 Third assignment of Experimental Robotics Laboratory course, M.Sc. in Robotics Engineering, University of Genova, Italy
 
-This is a ROS implementation of a robot agent playing a simplified Cluedo Game collecting hints and checking hypotheses. The robot's actions is planned using PDDL and executed using ROSPlan interfaces. The robot's knowledge is represented in OWL ontology that is being accessed using ARMOR client. The hints in the environment are represented in the form of Aurco markers
+This is a ROS implementation of a robot agent playing a simplified Cluedo Game collecting hints in the form of Aruco markers and checking hypotheses. The robot's actions is planned using PDDL and executed using ROSPlan interfaces. The robot's knowledge is represented in OWL ontology that is being accessed using ARMOR client. The hints in the environment are represented in the form of Aurco markers
 
 The system was implemented and tested on the [docker image](https://hub.docker.com/repository/docker/carms84/exproblab) provided by Prof. Carmine Recchiuto, University of Genova, Italy
 
