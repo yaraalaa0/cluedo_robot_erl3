@@ -12,7 +12,7 @@ The system was implemented and tested on the [docker image](https://hub.docker.c
 
 ## Introduction:
 
-This is a ROS implementation of a robot agent playing a simplified Cluedo Game collecting hints and checking hypotheses. The agent goes randomly to one of six locations in the environment to collect hints in the form of *(who, PERSON)*, *(where, PLACE)* and *(what, WEAPON)*. Collected hints are added to the ontology and after 3 hints or more, are collected the agent goes to the center point to check if a correct hypothesis was found yet or not. The agent continues to explore the environment, collect hints, and check hypotheses until it finds the correct hypothesis.
+This is a ROS implementation of a robot agent playing a simplified Cluedo Game collecting hints in the form of Aruco markers on the ground and checking hypotheses. The agent goes randomly to one of six locations in the environment to collect hints in the form of *(who, PERSON)*, *(where, PLACE)* and *(what, WEAPON)*. Collected hints are added to the ontology and after 3 hints or more, are collected the agent goes to the center point to check if a correct hypothesis was found yet or not. The agent continues to explore the environment, collect hints, and check hypotheses until it finds the correct hypothesis.
 
 ## Component Diagram:
 
